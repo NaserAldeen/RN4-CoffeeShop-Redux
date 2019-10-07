@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { checkoutCart } from "../../store/actions/coffeeActions";
 // NativeBase Components
 import { Text, List, Button } from "native-base";
 // Component
@@ -19,7 +19,7 @@ class CoffeeCart extends Component {
     return (
       <List>
         {cartItems}
-        <Button full danger>
+        <Button onPress={() => this.props.checkout()} full danger>
           <Text>Checkout</Text>
         </Button>
       </List>
@@ -30,5 +30,12 @@ class CoffeeCart extends Component {
 const mapStateToProps = state => ({
   items: state.cartReducer.items
 });
-
-export default connect(mapStateToProps)(CoffeeCart);
+const mapDispatchToProps = dispatch => {
+  return {
+    checkout: () => dispatch(checkoutCart())
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CoffeeCart);

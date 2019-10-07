@@ -5,7 +5,7 @@ export const getCoffeeShops = () => {
   return async dispatch => {
     dispatch(setCoffeeShopsLoading());
     try {
-      const res = await axios.get("http://coffee.q8fawazo.me/api/?format=json");
+      const res = await axios.get("http://178.128.114.232/api/?format=json");
       const coffeeShops = res.data;
       dispatch({
         type: actionTypes.GET_COFFEESHOPS,
@@ -19,4 +19,18 @@ export const getCoffeeShops = () => {
 
 export const setCoffeeShopsLoading = () => ({
   type: actionTypes.COFFEESHOPS_LOADING
+});
+
+/////////////NEW ACTIONS//////////////////////////
+export const addItemToCart = item => ({
+  type: actionTypes.ADD_ITEM,
+  payload: item
+});
+
+export const removeItemFromCart = item => ({
+  type: actionTypes.REMOVE_ITEM,
+  payload: item
+});
+export const checkoutCart = item => ({
+  type: actionTypes.CHECKOUT
 });
