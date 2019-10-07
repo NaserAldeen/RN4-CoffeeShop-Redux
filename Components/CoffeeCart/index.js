@@ -15,11 +15,14 @@ class CoffeeCart extends Component {
         <CartItem item={item} key={index} />
       ));
     }
-
+    const handlePress = () => {
+      this.props.checkout();
+      if (items.length > 0) alert("Thank you for your purchase :)");
+    };
     return (
       <List>
         {cartItems}
-        <Button onPress={() => this.props.checkout()} full danger>
+        <Button onPress={() => handlePress()} full danger>
           <Text>Checkout</Text>
         </Button>
       </List>
